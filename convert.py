@@ -39,8 +39,11 @@ if __name__ == '__main__':
         test_patterns()
 
     elif sys.argv[1] == '--help':
-        print("Commands:\n    ptest\n    convert [IMAGES]\n")
+        print("Commands:\n    --help\n    ptest\n    convert [IMAGES]\n")
 
     elif sys.argv[1] == 'convert':
         convert(sys.argv[2:])
+
+    else:
+        print("Error: No command given. Use --help for available commands")
     
