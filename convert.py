@@ -18,9 +18,16 @@ def test_patterns():
     for key, value in img_out.items():
         cv2.imwrite(key + '.jpg', value)
 
+def convert_image(img_name):
+    img_in = cv2.imread(img_name, cv2.IMREAD_GRAYSCALE)
+    img_out = cv2.cvtColor(img_in, cv2.COLOR_BayerBG2BGR)
+
+    img_out_name = img_name.split('.')[0]
+    cv2.imwrite(img_out_name + '.jpg', img_out)
+
 def convert(img_list):
     for img in img_list:
-        print('test')
+        convert_image(img)
 
 if __name__ == '__main__':
 
