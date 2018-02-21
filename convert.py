@@ -1,6 +1,7 @@
+import sys
 import cv2
 
-def convert():
+def test_patterns():
     img = cv2.imread("test.bmp", cv2.IMREAD_GRAYSCALE)
 
     img_out = {
@@ -17,5 +18,22 @@ def convert():
     for key, value in img_out.items():
         cv2.imwrite(key + '.jpg', value)
 
+def convert(img_list):
+    for img in img_list:
+        print('test')
+
 if __name__ == '__main__':
-    convert()
+
+    if len(sys.argv) == 1:
+        print("Error, please specify a file or ptest. Use --help for more options.")
+        exit()
+
+    elif sys.argv[1] == 'ptest':
+        test_patterns()
+
+    elif sys.argv[1] == '--help':
+        print("Commands:\n    ptest\n    convert [IMAGES]\n")
+
+    elif sys.argv[1] == 'convert':
+        convert(sys.argv[2:])
+    
