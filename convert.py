@@ -19,13 +19,18 @@ def test_patterns():
         cv2.imwrite(key + '.jpg', value)
 
 def convert_image(img_name):
-    img_in = cv2.imread(img_name, cv2.IMREAD_GRAYSCALE)
+    
+    img_in = cv2.UMat(cv2.imread(img_name, cv2.IMREAD_GRAYSCALE))
     img_out = cv2.cvtColor(img_in, cv2.COLOR_BayerBG2BGR)
 
     img_out_name = img_name.split('.')[0]
     cv2.imwrite(img_out_name + '.jpg', img_out)
 
 def convert(img_list):
+    print("OpenCL available: " + str(cv2.ocl.haveOpenCL()))
+    cv2.ocl.setUseOpenCL(True)
+    print("Using OpenCL: " + str(cv2.ocl.useOpenCL()))
+
     for img in img_list:
         convert_image(img)
 
